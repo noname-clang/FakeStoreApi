@@ -6,6 +6,8 @@ async function SendGetToAPI(endpoint)
     return await request.json()
 }
 
+
+
 async function ShowProducts(){
     const data = await SendGetToAPI("products?limit=6")
     console.log(data)
@@ -15,7 +17,7 @@ async function ShowProducts(){
         DivCharacter.innerHTML = `
         <img src="${datareccebida.image}" alt="imagemdopersonagem" >
         <article>
-        <h3>${datareccebida.title} </h3>
+        <h3 id="products-boxdesc${index}">${datareccebida.title} </h3>
         <span class="Description" id="description">Description :</span>
         <p id="detalhe-desc">${datareccebida.description}</p>
         </article>
@@ -25,6 +27,15 @@ async function ShowProducts(){
         charactercontainer.appendChild(DivCharacter)
     })
     
+    data.map((datareccebida,index) =>{
+        const Product =  document.getElementById(`products-box${index}`);
+        const Pdesc =  document.getElementById(`products-boxdesc${index}`).innerText
+        console.log(Pdesc)
+        Product.addEventListener('click' ,()=> {
+
+            window.location.href = `../productpage.html?productname=${Pdesc}`
+        })
+    })
 }
 
 async function ShowCategories(){
@@ -40,6 +51,8 @@ async function ShowCategories(){
         acategorie.classList.add(`dropdown-content${index}`)
         charactercontainer.appendChild(acategorie)
     })
+
+
     
 }
 async function ClickEvents(){
