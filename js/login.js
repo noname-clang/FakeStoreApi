@@ -23,7 +23,7 @@ function TryLogin(data,usuario, senha){
     )
     if(login)
     {
-        window.location = '../initialpage.html'
+        window.location = './initialpage.html'
     }
     else
     alert(`User Not Found`)
